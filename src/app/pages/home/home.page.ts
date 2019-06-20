@@ -14,9 +14,7 @@ export class HomePage implements OnInit {
 private products = new Array<Product>();
 private productsSubscription: Subscription;
  private loading: any;
-product:Product[]=[];
-Buscar = '';
-  
+
  
 
   constructor(
@@ -28,7 +26,6 @@ Buscar = '';
     this.productsSubscription = this.productService.getProducts().subscribe(data =>{
       this.products = data;
       
-      this.productService.getProducts().subscribe(resp => this.product =resp);
     });
   }
   
@@ -36,13 +33,6 @@ Buscar = '';
 
   ngOnDestroy() {
     this.productsSubscription.unsubscribe();
-  }
-  buscarUsuario( event ) {
-
-    const Buscar = event.target.value;
-    this.Buscar = Buscar;
-
-
   }
   async logout() {
     await this.presentLoading();
